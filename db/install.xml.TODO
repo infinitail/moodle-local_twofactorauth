@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/twofactorauth/db" VERSION="20190429" COMMENT="XMLDB file for Moodle local/twofactorauth"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_2fa_users" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="providerid" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="providername" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="secret" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="encryptedsecret" TYPE="char" LENGTH="128" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="regtime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="verified" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="lastotp" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="lastotpissuetime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="lastotpusetime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT=""/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="useridandproviderid" UNIQUE="true" FIELDS="userid, providerid" COMMENT=""/>
+      </INDEXES>
+    </TABLE>
+
+    <TABLE NAME="local_2fa_trusted_devices" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="cookieid" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELS NAME="activatetime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELS NAME="expiretime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELS NAME="useragent" TYPE="char" LENGTH="128" NOTNULL="true" SEQUENCE="false"/>
+        <FIELS NAME="lastloginip" TYPE="char" LENGTH="15" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT=""/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="userid" UNIQUE="false" FIELDS="userid" COMMENT=""/>
+        <INDEX NAME="cookieid" UNIQUE="true" FIELDS="userid" COMMENT=""/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
