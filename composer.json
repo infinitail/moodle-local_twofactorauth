@@ -1,7 +1,7 @@
 {
     "require": {
         "phpgangsta/googleauthenticator": "dev-master",
-        "phpmailer/phpmailer": "^6.0",
-        "endroid/qr-code": "^3.6"
+        "phpmailer/phpmailer": "^6.5",
+        "endroid/qr-code": "^3.9"
     }
 }
