@@ -3,7 +3,7 @@
 A "Two factor authentication" plugin for moodle.
 
 ## test env
-  * moodle 3.5 / 3.6
+  * moodle 3.5 / 3.6 / 3.9
   * php 7.2
 
 ## setup
