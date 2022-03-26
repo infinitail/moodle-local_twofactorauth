@@ -95,13 +95,10 @@ function local_twofactorauth_extend_navigation(\global_navigation $nav) {
 
     if (local\twofactorauth\locallib::is_2fa_required() === true) {
         // Skip if in provider selector page for avoid infinite loop
-        $url = $CFG->wwwroot . $_SERVER['REQUEST_URI'];
-        $selector_url = new moodle_url('/local/twofactorauth/selector.php');
-        if ($url === $selector_url->__toString()) {
-            return;     // Avoid redirect loop
+        $url = parse_url(new moodle_url('/local/twofactorauth/selector.php'));
+        if ($_SERVER['REQUEST_URI'] !== $url['path']) {
+            // Display 2FA provider selector
+            redirect(new moodle_url('/local/twofactorauth/selector.php'));
         }
-
-        // Display 2FA provider selector
-        redirect(new moodle_url('/local/twofactorauth/selector.php'));
     }
 }
