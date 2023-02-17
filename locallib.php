@@ -122,6 +122,11 @@ class locallib
             return false;
         }
 
+	// login as function
+	if (\core\session\manager::is_loggedinas()) {
+	    return false;
+	}
+
         // Check 2FA target user role
         if (!self::is_2fa_configured_user($USER->id)) {
             switch ($pluginconfig->force_to_use_target) {
